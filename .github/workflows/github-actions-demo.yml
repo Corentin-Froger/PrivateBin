@@ -12,5 +12,5 @@ jobs:
       #- run: apt install phpunit php-gd php-sqlite3 php-xdebug
       - run: php -S localhost:8080&
       - run: cd tst
-      - run: ../vendor/bin/phpunit
-      #- uses: php-actions/phpunit@v3
+      #- run: ../vendor/bin/phpunit
+      - uses: php-actions/phpunit@v3
