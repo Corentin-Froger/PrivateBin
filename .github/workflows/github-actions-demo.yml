@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} vient de push, tests en cours
 on: [push]
 jobs:
   Tests:
@@ -11,6 +11,6 @@ jobs:
       #- run: composer update
       #- run: apt install phpunit php-gd php-sqlite3 php-xdebug
       - run: php -S localhost:8080&
-      - run: cd PrivateBin/tst
+      - run: cd tst
       - run: ../vendor/bin/phpunit
       #- uses: php-actions/phpunit@v3
