@@ -7,10 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
-      - uses: php-actions/phpunit@v3
       - run: composer install
       - run: composer update
       #- run: apt install phpunit php-gd php-sqlite3 php-xdebug
       - run: php -S localhost:8080&
       - run: cd PrivateBin/tst
       - run: ../vendor/bin/phpunit
+      #- uses: php-actions/phpunit@v3
