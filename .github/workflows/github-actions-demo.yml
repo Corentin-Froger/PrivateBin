@@ -5,11 +5,11 @@ jobs:
   Tests:
     runs-on: ubuntu-latest
     steps:
-      - run: bin/composer install
-      - run: bin/composer update
       - uses: php-actions/composer@v6 # or alternative dependency management
       - uses: php-actions/phpunit@v3
-      - run: apt install phpunit php-gd php-sqlite3 php-xdebug
+      - run: bin/composer install
+      - run: bin/composer update
+      #- run: apt install phpunit php-gd php-sqlite3 php-xdebug
       - run: php -S localhost:8080&
       - run: cd PrivateBin/tst
       - run: ../vendor/bin/phpunit
