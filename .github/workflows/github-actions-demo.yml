@@ -13,6 +13,6 @@ jobs:
       #- run: php -S localhost:8080&
       #- run: cd tst
       #- run: ../vendor/bin/phpunit
-      - uses: php-actions/phpunit@v3
+      #- uses: php-actions/phpunit@v3
       - run: make install
       - run: make test
