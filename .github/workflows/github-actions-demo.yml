@@ -12,8 +12,4 @@ jobs:
     needs: Install
     runs-on: ubuntu-latest
     steps:
-      - name: PHPUnit tests
-        uses: php-actions/phpunit@v3
-        with:
-          configuration: "./phpunit.xml"
-      - run: make test
+      - run: sudo make test
