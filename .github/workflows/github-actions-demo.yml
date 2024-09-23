@@ -7,9 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
+      - uses: php-actions/phpunit@v3
       - run: sudo make install
   Tests:
     needs: Install
     runs-on: ubuntu-latest
     steps:
-      - run: sudo make test
+      - run: make test
