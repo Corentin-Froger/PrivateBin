@@ -5,13 +5,10 @@ jobs:
   Install:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
-      - name: Install dependencies
       - run: make install
   Tests:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Test
-        - run: make test
+    runs-on: ubuntu-latest
+    steps:
+      - run: make test
