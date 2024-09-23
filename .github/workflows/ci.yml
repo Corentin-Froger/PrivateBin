@@ -11,7 +11,7 @@ jobs:
       - uses: php-actions/composer@v6 # or alternative dependency management
       - run: sudo make install
       - run: sudo bin/composer update
-      #- uses: php-actions/phpunit@v3
+      - uses: php-actions/phpunit@v3
        # with:
         #  php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
          # version: 9.6.11
