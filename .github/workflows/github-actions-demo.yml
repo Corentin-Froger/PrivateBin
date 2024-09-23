@@ -8,9 +8,9 @@ jobs:
       - name: checkout code
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
-  
-      - name: install dependencies
+      
+      - name: Install dependencies
       - run: sudo make install
-
-      - name: run tests
+      
+      - name: Test
       - run: make test
