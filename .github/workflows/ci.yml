@@ -9,12 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: php-actions/composer@v6 # or alternative dependency management
+      - run: sudo make install
       - uses: php-actions/phpunit@v3
         with:
-          #php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
-          #version: 9.6.11
+          php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
+          version: 9.6.11
           configuration: phpunit.xml
-      - run: sudo make install
   Tests:
     needs: Install
     runs-on: ubuntu-latest
