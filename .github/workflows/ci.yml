@@ -8,12 +8,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
       - run: sudo make install
-      - run: sudo bin/composer update
-      - run: sudo apt install php-gd php-sqlite3 php-xdebug
+      - uses: php-actions/phpunit@v3
+        with:
+          php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
+          version: 9.6.11
+          configuration: phpunit.xml
   Tests:
     needs: Install
     runs-on: ubuntu-latest
     steps:
-      #- uses: php-actions/phpunit@v3
-      - run: XDEBUG_MODE=coverage ./vendor/bin/phpunit –coverage-text=coverage_test.txt
-      #- run: make test
+      #- run: XDEBUG_MODE=coverage ./vendor/bin/phpunit –coverage-text=coverage_test.txt
+      - run: make test
