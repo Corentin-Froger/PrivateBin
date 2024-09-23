@@ -5,14 +5,12 @@ jobs:
   Tests:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout code
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
-      #- run: composer install
-      #- run: composer update
-      #- run: apt install phpunit php-gd php-sqlite3 php-xdebug
-      #- run: php -S localhost:8080&
-      #- run: cd tst
-      #- run: ../vendor/bin/phpunit
-      #- uses: php-actions/phpunit@v3
-      - run: make install
+  
+      - name: install dependencies
+      - run: sudo make install
+
+      - name: run tests
       - run: make test
