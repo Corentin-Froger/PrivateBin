@@ -13,6 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: php-actions/phpunit@v3
-        with:
-          configuration: "phpunit.xml"
-      - run: make test
+      - run: XDEBUG_MODE=coverage vendor/bin/phpunit –coverage-text=coverage_test.txt
+      #- run: make test
