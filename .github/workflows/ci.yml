@@ -9,6 +9,7 @@ jobs:
       - uses: php-actions/composer@v6 # or alternative dependency management
       - run: sudo make install
       - run: sudo bin/composer update
+      - run: sudo apt install php-gd php-sqlite3 php-xdebug
   Tests:
     needs: Install
     runs-on: ubuntu-latest
