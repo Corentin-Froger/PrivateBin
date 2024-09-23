@@ -11,11 +11,11 @@ jobs:
       - uses: php-actions/composer@v6 # or alternative dependency management
       - run: sudo make install
       - run: sudo bin/composer update
-      - uses: php-actions/phpunit@v3
-        with:
-          php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
-          version: 9.6.11
-          configuration: phpunit.xml
+      #- uses: php-actions/phpunit@v3
+       # with:
+        #  php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
+         # version: 9.6.11
+          #configuration: phpunit.xml
   Tests:
     needs: Install
     runs-on: ubuntu-latest
