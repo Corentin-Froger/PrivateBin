@@ -8,14 +8,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6 # or alternative dependency management
       - run: sudo make install
-  Start_PHP:
-    needs: Install
-    runs-on: ubuntu-latest
-    steps:
-      - run: make start
   Tests:
     needs: Install
     runs-on: ubuntu-latest
     steps:
       - uses: php-actions/phpunit@v3
+        with:
+          configuration: "phpunit.xml"
       - run: make test
