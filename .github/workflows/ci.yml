@@ -1,15 +1,17 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} vient de push, tests en cours
 on: [push]
+env:
+  XDEBUG_MODE: coverage
 jobs:
   Install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: php-actions/composer@v6 # or alternative dependency management
       - uses: php-actions/phpunit@v3
         with:
-          php_extensions: sqlite3 dom libxml xml xmlwriter xdebug
+          php_extensions: libxml xml xmlwriter xdebug
           version: 9.6.11
           configuration: phpunit.xml
       - run: sudo make install
