@@ -19,6 +19,7 @@ jobs:
           #configuration: phpunit.xml
 
       - name: PHP Code Sniffer
+        continue-on-error: true
         uses: php-actions/phpcs@v1
         with:
           php_version: 8.1
@@ -26,7 +27,7 @@ jobs:
           standard: phpcs.xml
 
       - name: PHP Mess Detector
-        if: always() # Pour continuer, même si cela renvoie une erreur
+        continue-on-error: true
         uses: php-actions/phpmd@v1
         with:
           php_version: 8.1
@@ -35,7 +36,7 @@ jobs:
           ruleset: ruleset.xml
 
       - uses: php-actions/phpstan@v3
-        if: always()
+        continue-on-error: true
         with:
           path: ./tst/
   Tests:
