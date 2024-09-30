@@ -38,9 +38,6 @@ jobs:
         if: always()
         with:
           path: ./tst/
-          
-      - run: sudo make install
-      - run: sudo bin/composer update
   Tests:
     needs: Install
     runs-on: ubuntu-latest
