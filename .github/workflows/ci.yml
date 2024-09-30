@@ -45,7 +45,7 @@ jobs:
     steps:
       - name: Fix phpcs
         continue-on-error: true
-        run: phpcbf ./lib/
+        run: ./vendor/bin/phpcbf ./lib/
   Tests:
     needs: Fix
     runs-on: ubuntu-latest
