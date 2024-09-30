@@ -26,6 +26,7 @@ jobs:
           standard: phpcs.xml
 
       - name: PHP Mess Detector
+        if: always()
         uses: php-actions/phpmd@v1
         with:
           php_version: 8.1
@@ -34,6 +35,7 @@ jobs:
           ruleset: tst/phpmd/ruleset.xml
 
       - uses: php-actions/phpstan@v3
+        if: always()
         with:
           path: ./tst/
           
@@ -44,13 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       #- run: make test
-      #- run: vendor/bin/phpunit tst
+      - run: vendor/bin/phpunit tst
 
       #- run: vendor/bin/phpunit –coverage-text=coverage_test.txt
-
-      # phpcs
-      - run: ./vendor/bin/phpcs --extensions=php ./lib/
-      # phpmd
-      - run: ./vendor/bin/phpmd ./lib ansi codesize,unusedcode,naming
-      # phpstan
-      - run: ./vendor/bin/phpstan analyse lib tst
