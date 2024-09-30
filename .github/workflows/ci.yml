@@ -26,7 +26,7 @@ jobs:
           standard: phpcs.xml
 
       - name: PHP Mess Detector
-        continue-on-error: true
+        if: always() # Pour continuer, même si cela renvoie une erreur
         uses: php-actions/phpmd@v1
         with:
           php_version: 8.1
@@ -35,7 +35,7 @@ jobs:
           ruleset: ruleset.xml
 
       - uses: php-actions/phpstan@v3
-        continue-on-error: true
+        if: always()
         with:
           path: ./tst/
   Tests:
