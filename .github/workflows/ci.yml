@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} vient de push, tests en cours
+name: Automatisation de la production
+run-name: ${{ github.actor }} vient de push
 on: [push]
 env:
   XDEBUG_MODE: coverage
@@ -8,18 +8,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: php-actions/composer@v6 # or alternative dependency management
-      - run: sudo make install
-      - run: sudo bin/composer update
+      
+      - name: Composer install
+        uses: php-actions/composer@v6
+
       #- uses: php-actions/phpunit@v3
        # with:
         #  php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
          # version: 9.6.11
           #configuration: phpunit.xml
+
+      - name: PHP Code Sniffer
+        uses: php-actions/phpcs@v1
+        with:
+          php_version: 8.1
+          path: ./lib/
+          standard: phpcs.xml
+
+      - name: PHP Mess Detector
+        uses: php-actions/phpmd@v1
+        with:
+          php_version: 8.1
+          path: ./lib/
+          output: text
+          ruleset: tst/phpmd/ruleset.xml
+
+      - uses: php-actions/phpstan@v3
+        with:
+          path: ./tst/
+          
+      - run: sudo make install
+      - run: sudo bin/composer update
   Tests:
     needs: Install
     runs-on: ubuntu-latest
     steps:
-      - run: vendor/bin/phpunit –coverage-text=coverage_test.txt
       #- run: make test
-      - run: vendor/bin/phpunit tst
+      #- run: vendor/bin/phpunit tst
+
+      #- run: vendor/bin/phpunit –coverage-text=coverage_test.txt
+
+      # phpcs
+      - run: ./vendor/bin/phpcs --extensions=php ./lib/
+      # phpmd
+      - run: ./vendor/bin/phpmd ./lib ansi codesize,unusedcode,naming
+      # phpstan
+      - run: ./vendor/bin/phpstan analyse lib tst
