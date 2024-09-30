@@ -39,11 +39,18 @@ jobs:
         continue-on-error: true
         with:
           path: ./tst/
-  Tests:
+  Fix:
     needs: Install
     runs-on: ubuntu-latest
     steps:
+      - name: Fix phpcs
+        continue-on-error: true
+        run: phpcbf ./lib/
+  Tests:
+    needs: Fix
+    runs-on: ubuntu-latest
+    steps:
       #- run: make test
-      - run: vendor/bin/phpunit tst
+      - run: ./vendor/bin/phpunit tst
 
-      #- run: vendor/bin/phpunit –coverage-text=coverage_test.txt
+      #- run: ./vendor/bin/phpunit –coverage-text=coverage_test.txt
