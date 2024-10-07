@@ -11,7 +11,7 @@ jobs:
     - name: 📂 Synchronisation de fichiers
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{ secrets.url }}
+        server: ${{ secrets.ip }}
         username: ${{ secrets.groupe }}
         password: ${{ secrets.mdp }}
         port: ${{ secrets.port }}
