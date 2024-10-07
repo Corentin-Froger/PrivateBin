@@ -17,3 +17,4 @@ jobs:
         port: ${{ secrets.port }}
         protocol: ftp
         server-dir: /www/
+        exclude: **/node_modules/**
