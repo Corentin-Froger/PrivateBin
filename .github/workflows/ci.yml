@@ -12,12 +12,6 @@ jobs:
       - name: Composer install
         uses: php-actions/composer@v6
 
-      #- uses: php-actions/phpunit@v3
-       # with:
-        #  php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
-         # version: 9.6.11
-          #configuration: phpunit.xml
-
       - name: PHP Code Sniffer
         continue-on-error: true
         uses: php-actions/phpcs@v1
@@ -50,7 +44,11 @@ jobs:
     needs: Fix
     runs-on: ubuntu-latest
     steps:
-      #- run: make test
-      - run: ./vendor/bin/phpunit tst
+       #- run: make test
+       - uses: php-actions/phpunit@v3
+         with:
+           php_extensions: gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug
+           version: 9.6.11
+           configuration: phpunit.xml
 
       #- run: ./vendor/bin/phpunit –coverage-text=coverage_test.txt
