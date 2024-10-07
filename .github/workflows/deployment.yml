@@ -15,3 +15,4 @@ jobs:
         username: ${{ secrets.groupe }}
         password: ${{ secrets.mdp }}
         port: ${{ secrets.port }}
+        protocol: ftp
