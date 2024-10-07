@@ -52,3 +52,18 @@ jobs:
            configuration: phpunit.xml
 
       #- run: ./vendor/bin/phpunit –coverage-text=coverage_test.txt
+
+  Deploiement:
+    needs: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 Synchronisation de fichiers
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.ip }}
+          username: ${{ secrets.groupe }}
+          password: ${{ secrets.mdp }}
+          port: ${{ secrets.port }}
+          protocol: ftp
+          server-dir: /www/
+          exclude: /vendor/
