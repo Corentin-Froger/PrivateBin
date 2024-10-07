@@ -16,3 +16,4 @@ jobs:
         password: ${{ secrets.mdp }}
         port: ${{ secrets.port }}
         protocol: ftp
+        server-dir: ${{ secrets.url }}
