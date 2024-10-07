@@ -11,6 +11,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{groupe.url}}
-        username: ${{groupe.groupe}}
-        password: ${{groupe.mdp}}
+        server: ${{secrets.url}}
+        username: ${{secrets.groupe}}
+        password: ${{secrets.mdp}}
