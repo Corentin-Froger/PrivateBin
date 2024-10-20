@@ -7,64 +7,8 @@ jobs:
   Install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Composer install
-        uses: php-actions/composer@v6
-
-      - name: PHP Code Sniffer
-        continue-on-error: true
-        uses: php-actions/phpcs@v1
-        with:
-          php_version: 8.1
-          path: ./lib/
-          standard: phpcs.xml
-
-      - name: PHP Mess Detector
-        continue-on-error: true
-        uses: php-actions/phpmd@v1
-        with:
-          php_version: 8.1
-          path: ./lib/
-          output: text
-          ruleset: ruleset.xml
-
-      - uses: php-actions/phpstan@v3
-        continue-on-error: true
-        with:
-          path: ./tst/
-  Fix:
-    needs: Install
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fix phpcs
-        continue-on-error: true
-        run: ./vendor/bin/phpcbf ./lib/
-  Tests:
-    needs: Fix
-    runs-on: ubuntu-latest
-    steps:
-       #- run: make test
-       - uses: php-actions/phpunit@v3
-         continue-on-error: true
-         with:
-           php_extensions: "gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug"
-           version: 9.6.11
-           configuration: phpunit.xml
-
-      #- run: ./vendor/bin/phpunit –coverage-text=coverage_test.txt
-
-  Deploiement:
-    needs: Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📂 Synchronisation de fichiers
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.ip }}
-          username: ${{ secrets.groupe }}
-          password: ${{ secrets.mdp }}
-          port: ${{ secrets.port }}
-          protocol: ftp
-          server-dir: /www/
-          exclude: /vendor/
+      - uses: actions/checkout@v3
+      - uses: php-actions/composer@v6
+      - run: sudo make install
+      - run: sudo make start
+      - run: sudo make test
