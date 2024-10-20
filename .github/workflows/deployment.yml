@@ -13,6 +13,6 @@ jobs:
           password: ${{ secrets.mdp }}
           port: ${{ secrets.port }}
           protocol: ftp
-          #server-dir: /www/
-          exclude: /vendor/
+          server-dir: www
+          exclude: vendor
           
