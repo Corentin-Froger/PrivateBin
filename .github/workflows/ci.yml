@@ -7,9 +7,16 @@ jobs:
   Install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: php-actions/composer@v6
       - run: sudo make install
-      #- run: sudo make start&
-      - run: sudo make test
-     
+      #- run: sudo make test
+      
+      - uses: php-actions/phpunit@v3
+        with:
+           php_extensions: "gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug"
+           version: 9.6.11
+           configuration: phpunit.xml
+
+      - run: ./vendor/bin/phpunit --coverage-text=coverage_test.txt
+      - run: ./vendor/bin/phpunit --coverage-html=html_coverage
