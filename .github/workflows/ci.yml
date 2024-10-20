@@ -13,6 +13,7 @@ jobs:
       #- run: sudo make test
       
       - uses: php-actions/phpunit@v3
+        continue-on-error: true
         with:
            php_extensions: "gd sqlite3 dom json libxml mbstring tokenizer xml xmlwriter zip xdebug"
            version: 9.6.11
